@@ -18,7 +18,7 @@
             <input type="number" name="trivia_amount" id="trivia_amount" class="form-control" min="1" max="20"
                 value="10">
             <br>
-            <label for="trivia_category">Select Category</label>
+            <label for="trivia_category">Select Category:</label>
             <select name="trivia_category" class="form-control">
                 <option value="any">Any Category</option>
                 <option value="9">General Knowledge</option>
@@ -48,6 +48,16 @@
 
             </select>
             <br>
+            <label for="trivia_difficulty"></label>
+            <select name="trivia_diffuculty" class="form-control">
+                <option value="any">Any Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <br>
+            <button class="btn" type="submit">Generate Game</button>
+
         </form>
 
 
