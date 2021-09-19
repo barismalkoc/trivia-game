@@ -3,14 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>TRIVIA</h1>
+    <div class="header">
+        <h1>TRIVIA</h1>
+    </div>
+
     <div class="select-form">
         <form action method="post">
             <h2>Choose Details</h2>
@@ -19,7 +21,7 @@
                 value="10">
             <br>
             <label for="trivia_category">Select Category:</label>
-            <select name="trivia_category" class="form-control">
+            <select id="trivia_category" name="trivia_category" class="form-control">
                 <option value="any">Any Category</option>
                 <option value="9">General Knowledge</option>
                 <option value="10">Entertainment: Books</option>
@@ -48,7 +50,7 @@
 
             </select>
             <br>
-            <label for="trivia_difficulty"></label>
+            <label for="trivia_difficulty">Select Difficulty:</label>
             <select name="trivia_diffuculty" class="form-control">
                 <option value="any">Any Difficulty</option>
                 <option value="easy">Easy</option>
@@ -56,7 +58,7 @@
                 <option value="hard">Hard</option>
             </select>
             <br>
-            <button class="btn" type="submit">Generate Game</button>
+            <button class="btn" onclick="gameStart()">Generate Game</button>
 
         </form>
 

@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+    background-color: #011F3F;
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    margin: 5%;
+    color: #FEF2BF;
+}
+
+.select-form {
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 10px;
+    background-color: #FEF2BF;
+    width: 40vh;
+    height: 45vh;
+}
+
+.label {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.form-control {
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    margin-left: 10%;
+    width: 80%;
+    height: 30px;
+}
+
+.btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    margin-top: 30px;
+    width: 70%;
+    height: 50px;
+}
