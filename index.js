@@ -22,19 +22,15 @@ const pullInformation = () => {
     numberOfQuestionForDetail = numberOfQuestion;
     const selectCategory = selectCategoryBtn.value;
     const selectDifficulty = selectDifficultyBtn.value;
-    console.log(numberOfQuestion, selectCategory, selectDifficulty);
     document.querySelector(".count-down").style.display = "block";
 
     countDown();
     getQuestionFromApi(numberOfQuestion, selectCategory, selectDifficulty);
 
-
-
 }
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function recursion(arr) {
-    document.querySelector(".select-form").style.display = "none";
     if (arr.length == 0) {
         document.querySelector(".count-down").style.display = "none";
         return document.querySelector(".quiz-container").style.display = "block";
@@ -83,7 +79,6 @@ const getQuestionFromApi = async (numberOfQuestion, selectCategory, selectDiffic
 
     console.log(API_URL)
     data = await response.json();
-    console.log(data);
     questionEngine(data);
 }
 
@@ -110,10 +105,7 @@ const changeDetail = () => {
 
 const addAnswer = (correctAnswer, incorrectAnswers) => {
 
-    console.log(correctAnswer, incorrectAnswers)
-
     const randomNumber = Math.floor(Math.random() * 3);
-    console.log(randomNumber)
 
     for (let i = 0; i < 4; i++) {
         if (i == randomNumber) {
@@ -166,7 +158,7 @@ const checkAnswer = () => {
         selectedAnswer = null;
 
     } else {
-        console.log("bitti");
+
         document.querySelector(".quiz-container").style.display = "none";
         document.querySelector(".game-finished-container").style.display = "block";
         document.querySelector("#end-game-score").innerHTML = `Your Score : ${correctNumber}/${numberOfQuestionForDetail}`
