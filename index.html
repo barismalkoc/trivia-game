@@ -1,127 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header">
-        <h1>TRIVIA</h1>
+      <h1>TRIVIA</h1>
     </div>
 
     <div class="base-container">
-        <div class="select-form">
-            <form method="dialog" action="#" enctype="text/plain">
-                <h2>Choose Details</h2>
-                <label for="trivia_amount">Number Of Questions:</label>
-                <input type="number" name="trivia_amount" id="trivia_amount" class="form-control" min="1" max="20"
-                    value="10">
-                <br>
-                <label for="trivia_category">Select Category:</label>
-                <select id="trivia_category" name="trivia_category" class="form-control">
-                    <option value="any">Any Category</option>
-                    <option value="9">General Knowledge</option>
-                    <option value="10">Entertainment: Books</option>
-                    <option value="11">Entertainment: Film</option>
-                    <option value="12">Entertainment: Music</option>
-                    <option value="13">Entertainment: Musicals &amp; Theatres</option>
-                    <option value="14">Entertainment: Television</option>
-                    <option value="15">Entertainment: Video Games</option>
-                    <option value="16">Entertainment: Board Games</option>
-                    <option value="17">Science &amp; Nature</option>
-                    <option value="18">Science: Computers</option>
-                    <option value="19">Science: Mathematics</option>
-                    <option value="20">Mythology</option>
-                    <option value="21">Sports</option>
-                    <option value="22">Geography</option>
-                    <option value="23">History</option>
-                    <option value="24">Politics</option>
-                    <option value="25">Art</option>
-                    <option value="26">Celebrities</option>
-                    <option value="27">Animals</option>
-                    <option value="28">Vehicles</option>
-                    <option value="29">Entertainment: Comics</option>
-                    <option value="30">Science: Gadgets</option>
-                    <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
-                    <option value="32">Entertainment: Cartoon &amp; Animations</option>
+      <div class="select-form">
+        <form method="dialog" action="#" enctype="text/plain">
+          <h2>Choose Details</h2>
+          <label for="trivia_amount">Number Of Questions:</label>
+          <input
+            type="number"
+            name="trivia_amount"
+            id="trivia_amount"
+            class="form-control"
+            min="1"
+            max="20"
+            value="10"
+          />
+          <br />
+          <label for="trivia_category">Select Category:</label>
+          <select
+            id="trivia_category"
+            name="trivia_category"
+            class="form-control"
+          >
+            <option value="any">Any Category</option>
+            <option value="9">General Knowledge</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="12">Entertainment: Music</option>
+            <option value="13">Entertainment: Musicals &amp; Theatres</option>
+            <option value="14">Entertainment: Television</option>
+            <option value="15">Entertainment: Video Games</option>
+            <option value="16">Entertainment: Board Games</option>
+            <option value="17">Science &amp; Nature</option>
+            <option value="18">Science: Computers</option>
+            <option value="19">Science: Mathematics</option>
+            <option value="20">Mythology</option>
+            <option value="21">Sports</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="24">Politics</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="27">Animals</option>
+            <option value="28">Vehicles</option>
+            <option value="29">Entertainment: Comics</option>
+            <option value="30">Science: Gadgets</option>
+            <option value="31">
+              Entertainment: Japanese Anime &amp; Manga
+            </option>
+            <option value="32">Entertainment: Cartoon &amp; Animations</option>
+          </select>
+          <br />
+          <label for="trivia_difficulty">Select Difficulty:</label>
+          <select
+            id="trivia_difficulty"
+            name="trivia_diffuculty"
+            class="form-control"
+          >
+            <option value="any">Any Difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <br />
+          <button class="btn" onclick="gameStart()">Generate Game</button>
+        </form>
+      </div>
 
-                </select>
-                <br>
-                <label for="trivia_difficulty">Select Difficulty:</label>
-                <select id="trivia_difficulty" name="trivia_diffuculty" class="form-control">
-                    <option value="any">Any Difficulty</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-                <br>
-                <button class="btn" onclick="gameStart()">Generate Game</button>
-
-            </form>
-
-
+      <div class="count-down">
+        <p></p>
+      </div>
+      <div class="quiz-container">
+        <div class="game-details">
+          <p id="score"></p>
+          <p id="question"></p>
         </div>
 
-        <div class="count-down">
-            <h1></h1>
-        </div>
-        <div class="quiz-container">
-            <div class="game-details">
-                <p id="score"></p>
-                <p id="question"></p>
-            </div>
-
-            <div class="question-container">
-                <h3 id="display-question">What country is not a part of Scandinavia?</h3>
-            </div>
-
-            <div class="options-container">
-                <button id="option0" class="options-button" onclick="chooseAnswer(0)">
-
-                </button>
-
-
-                <button id="option1" class="options-button" onclick="chooseAnswer(1)">
-
-                </button>
-
-
-                <button id="option2" class="options-button" onclick="chooseAnswer(2)">
-
-                </button>
-
-
-                <button id="option3" class="options-button" onclick="chooseAnswer(3)">
-
-                </button>
-            </div>
-
-
-            <div class="next-button-container">
-                <button id="next-question-btn" onclick="checkAnswer()">Next Question</button>
-            </div>
-
+        <div class="question-container">
+          <h3 id="display-question"></h3>
         </div>
 
-        <div class="game-finished-container">
-            <div class="end-game-detail">
-                <p id=end-game-score></p>
-                <p>Congratulations!</p>
-                <button id="reset-game-btn" onclick="resetGame()">Reset Game</button>
-            </div>
+        <div class="options-container">
+          <button
+            id="option0"
+            class="options-button"
+            onclick="chooseAnswer(0)"
+          ></button>
+
+          <button
+            id="option1"
+            class="options-button"
+            onclick="chooseAnswer(1)"
+          ></button>
+
+          <button
+            id="option2"
+            class="options-button"
+            onclick="chooseAnswer(2)"
+          ></button>
+
+          <button
+            id="option3"
+            class="options-button"
+            onclick="chooseAnswer(3)"
+          ></button>
         </div>
 
+        <div class="next-button-container">
+          <button id="next-question-btn" onclick="checkAnswer()">
+            Next Question
+          </button>
+        </div>
+      </div>
+
+      <div class="game-finished-container">
+        <div class="end-game-detail">
+          <p id="end-game-score"></p>
+          <p>Congratulations!</p>
+          <button id="reset-game-btn" onclick="resetGame()">Reset Game</button>
+        </div>
+      </div>
     </div>
 
-
-
-
-
     <script src="index.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,10 +1,6 @@
-const btn = document.querySelector(".btn");
-const numberOfQuestionBtn = document.querySelector("#trivia_amount");
-const selectCategoryBtn = document.querySelector("#trivia_category");
-const selectDifficultyBtn = document.querySelector("#trivia_difficulty");
-const optionsBtn = document.querySelector(".options-button");
-const nextQuestionBtn = document.querySelector("#next-question.btn");
-let API_URL = "https://opentdb.com/api.php";
+
+
+
 let selectedAnswer = null;
 let level = 0;
 let data;
@@ -18,14 +14,27 @@ const gameStart = () => {
 
 const pullInformation = () => {
 
-    const numberOfQuestion = numberOfQuestionBtn.value;
+    const numberOfQuestionBtn = document.querySelector("#trivia_amount").value;
+    const numberOfQuestion = numberOfQuestionBtn;
     numberOfQuestionForDetail = numberOfQuestion;
-    const selectCategory = selectCategoryBtn.value;
-    const selectDifficulty = selectDifficultyBtn.value;
-    document.querySelector(".count-down").style.display = "block";
+
+    const selectCategoryBtn = document.querySelector("#trivia_category").value;
+    const selectCategory = selectCategoryBtn;
+
+
+    const selectDifficultyBtn = document.querySelector("#trivia_difficulty").value;
+    const selectDifficulty = selectDifficultyBtn;
+
+    let selectFormDom = document.querySelector(".select-form");
+    selectFormDom.style.display = "none";
+
+    let CountDownDom = document.querySelector(".count-down");
+    CountDownDom.style.display = "block";
 
     countDown();
     getQuestionFromApi(numberOfQuestion, selectCategory, selectDifficulty);
+
+
 
 }
 
@@ -41,7 +50,7 @@ async function recursion(arr) {
         await timeout(1000);
     }
 
-    document.querySelector(".count-down h1").innerHTML = arr.pop();
+    document.querySelector(".count-down p").innerHTML = arr.pop();
     return recursion(arr);
 }
 
@@ -60,11 +69,12 @@ const playSound = (soundName) => {
 
     var audio = new Audio("sounds/" + soundName + ".mp3");
     audio.play();
+
 }
 
 const getQuestionFromApi = async (numberOfQuestion, selectCategory, selectDifficulty) => {
 
-
+    let API_URL = "https://opentdb.com/api.php";
     API_URL += `?amount=${numberOfQuestion}`
     if (selectCategory !== "any") {
         API_URL += `&category=${selectCategory}`;
@@ -82,6 +92,7 @@ const getQuestionFromApi = async (numberOfQuestion, selectCategory, selectDiffic
     questionEngine(data);
 }
 
+
 const questionEngine = () => {
 
     const validQuestion = data.results[level];
@@ -98,8 +109,13 @@ const changeQuestionHTML = (question) => {
 }
 
 const changeDetail = () => {
-    document.querySelector("#score").innerHTML = `Score : ${correctNumber} / ${numberOfQuestionForDetail}`;
-    document.querySelector("#question").innerHTML = `Question : ${level + 1} / ${numberOfQuestionForDetail}`;
+    let scoreDom = document.querySelector("#score");
+    let scoreInfo = `Score : ${correctNumber} / ${numberOfQuestionForDetail}`;
+    scoreDom.innerHTML = scoreInfo;
+
+    let questionDom = document.querySelector("#question");
+    let questionInfo = `Question : ${level + 1} / ${numberOfQuestionForDetail}`;
+    questionDom.innerHTML = questionInfo;
 }
 
 const addAnswer = (correctAnswer, incorrectAnswers) => {
@@ -132,15 +148,20 @@ const checkAnswer = () => {
         return;
     }
 
+
+
     if (level + 1 < numberOfQuestionForDetail) {
         console.log(level, numberOfQuestionForDetail)
 
-        if (selectedAnswerForControl.innerHTML == data.results[level].correct_answer) {
+        let correctAnswer = data.results[level].correct_answer;
+
+        if (selectedAnswerForControl.innerHTML == correctAnswer) {
             level++;
             correctNumber++;
             playSound("correct");
             questionEngine();
         }
+
 
         else {
             level++;
@@ -148,23 +169,34 @@ const checkAnswer = () => {
             questionEngine();
         }
 
+
         selectedAnswer = null;
 
     } else {
 
-        document.querySelector(".quiz-container").style.display = "none";
-        document.querySelector(".game-finished-container").style.display = "block";
-        document.querySelector("#end-game-score").innerHTML = `Your Score : ${correctNumber}/${numberOfQuestionForDetail}`
+        let quizContainerDom = document.querySelector(".quiz-container");
+        quizContainerDom.style.display = "none";
+
+        let gameFinsihedDom = document.querySelector(".game-finished-container");
+        gameFinsihedDom.style.display = "block";
+
+        let endGameScoreDom = document.querySelector("#end-game-score");
+        let yourScoreInfo = `Your Score : ${correctNumber}/${numberOfQuestionForDetail}`;
+        endGameScoreDom.innerHTML = yourScoreInfo;
     }
+
 
 }
 
 const resetGame = () => {
+
+
     selectedAnswer = "";
     level = 0;
     data;
     numberOfQuestionForDetail;
     correctNumber = 0;
+
 
     document.querySelector(".game-finished-container").style.display = "none";
     document.querySelector(".select-form").style.display = "block";
