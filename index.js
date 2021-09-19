@@ -82,7 +82,6 @@ const getQuestionFromApi = async (numberOfQuestion, selectCategory, selectDiffic
     questionEngine(data);
 }
 
-
 const questionEngine = () => {
 
     const validQuestion = data.results[level];
@@ -133,12 +132,8 @@ const checkAnswer = () => {
         return;
     }
 
-
-
     if (level + 1 < numberOfQuestionForDetail) {
         console.log(level, numberOfQuestionForDetail)
-
-
 
         if (selectedAnswerForControl.innerHTML == data.results[level].correct_answer) {
             level++;
@@ -147,13 +142,11 @@ const checkAnswer = () => {
             questionEngine();
         }
 
-
         else {
             level++;
             playSound("wrong");
             questionEngine();
         }
-
 
         selectedAnswer = null;
 
@@ -164,11 +157,9 @@ const checkAnswer = () => {
         document.querySelector("#end-game-score").innerHTML = `Your Score : ${correctNumber}/${numberOfQuestionForDetail}`
     }
 
-
 }
 
 const resetGame = () => {
-
     selectedAnswer = "";
     level = 0;
     data;
